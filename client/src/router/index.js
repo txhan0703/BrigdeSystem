@@ -45,11 +45,11 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/baseParam',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
+      path: 'baseParam',
+      name: 'BaseParam',
+      component: () => import('@/views/baseParam/bridgeTower'),
       meta: { title: '首页', icon: 'dashboard' }
     }]
   },
@@ -79,52 +79,124 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/workflow',
+    path: '/baseParam',
     component: Layout,
-    redirect: '/workflow/index',
-    name: 'workflow',
-    meta: { title: '工作流', icon: 'example', perms: ['workflow_manage']  },
+    redirect: '/baseParam/bridgeTower',
+    name: 'baseParam',
+    meta: { title: '设计基本参数', icon: 'example', perms: ['workflow_manage']  },
+    children: [
+      {
+        path: 'bridgeTower',
+        name: 'bridgeTower',
+        component: () => import('@/views/baseParam/bridgeTower'),
+        meta: { title: '桥塔设计参数', icon: 'example', perms: ['workflow_index'] }
+      },
+      {
+        path: 'mainLine',
+        name: 'mainLine',
+        component: () => import('@/views/baseParam/mainLine'),
+        meta: { title: '主梁设计参数', icon: 'example', perms: ['workflow_index'] }
+      },
+      {
+        path: 'stayCable',
+        name: 'stayCable',
+        component: () => import('@/views/baseParam/stayCable'),
+        meta: { title: '斜拉索设计参数', icon: 'example', perms: ['workflow_index'] }
+      },
+    ]
+  },
+  {
+    path: '/materialCharac',
+    component: Layout,
+    redirect: '/materialCharac/materialInput',
+    name: 'materialInput',
+    meta: { title: '材料特性', icon: 'example', perms: ['workflow_manage']  },
+    children: [
+      {
+        path: 'materialInput',
+        name: 'materialInput',
+        component: () => import('@/views/materialCharac/materialInput'),
+        meta: { title: '材料特性输入', icon: 'example', perms: ['workflow_index'] }
+      },
+    ]
+  },
+  {
+    path: '/secProperty',
+    component: Layout,
+    redirect: '/secProperty/upper',
+    name: 'secProperty',
+    meta: { title: '截面特性', icon: 'example', perms: ['workflow_manage']  },
+    children: [
+      {
+        path: 'upper',
+        name: 'upper',
+        component: () => import('@/views/secProperty/upper'),
+        meta: { title: '上塔柱', icon: 'example', perms: ['workflow_index'] }
+      },
+      {
+        path: 'down',
+        name: 'down',
+        component: () => import('@/views/secProperty/down'),
+        meta: { title: '中塔柱', icon: 'example', perms: ['workflow_index'] }
+      },
+      {
+        path: 'mainLine',
+        name: 'mainLine',
+        component: () => import('@/views/secProperty/mainLine'),
+        meta: { title: '主梁', icon: 'example', perms: ['workflow_index'] }
+      },
+    ]
+  },
+  {
+    path: '/stayCable',
+    component: Layout,
+    redirect: '/stayCable/middle',
+    name: 'stayCable',
+    meta: { title: '斜拉索布置', icon: 'example', perms: ['workflow_manage']  },
+    children: [
+      {
+        path: 'middle',
+        name: 'middle',
+        component: () => import('@/views/stayCable/middle'),
+        meta: { title: '中跨斜拉索', icon: 'example', perms: ['workflow_index'] }
+      },
+      {
+        path: 'side',
+        name: 'side',
+        component: () => import('@/views/stayCable/side'),
+        meta: { title: '边跨斜拉索', icon: 'example', perms: ['workflow_index'] }
+      },
+    ]
+  },
+  {
+    path: '/resultParam',
+    component: Layout,
+    redirect: '/resultParam/index',
+    name: 'resultParam',
+    meta: { title: '求解设置', icon: 'example', perms: ['workflow_manage']  },
     children: [
       {
         path: 'index',
         name: 'index',
-        component: () => import('@/views/workflow/index'),
-        meta: { title: '工作流', icon: 'example', perms: ['workflow_index'] }
-      },
+        component: () => import('@/views/resultParam/index'),
+        meta: { title: '求解参数设置', icon: 'example', perms: ['workflow_index'] }
+      }
+    ]
+  },
+  {
+    path: '/resultView',
+    component: Layout,
+    redirect: '/resultView/index',
+    name: 'resultView',
+    meta: { title: '查看结果', icon: 'example', perms: ['workflow_manage']  },
+    children: [
       {
-        path: 'ticket',
-        name: 'ticket',
-        component: () => import('@/views/workflow/ticket'),
-        meta: { title: '工单管理', icon: 'example' ,noCache: true, perms: ['workflow_ticket'] },
-      },
-      {
-        path: 'workFlowTickets',
-        name: 'workFlowTickets',
-        component: () => import('@/views/workflow/workFlowTickets'),
-        meta: { title: '工单', icon: 'example' ,noCache: true,},
-        hidden: true
-      },
-      {
-        path: 'configuration',
-        name: 'configuration',
-        component: () => import('@/views/workflow/configuration'),
-        meta: { title: '工作流配置', icon: 'example' },
-        hidden: true
-      },
-      {
-        path: 'ticketHandle',
-        name: 'ticketHandle',
-        component: () => import('@/views/workflow/ticketHandle'),
-        meta: { title: '工单处理', icon: 'example',noCache: true,},
-        hidden: true
-      },
-      {
-        path: 'ticketDetail',
-        name: 'ticketDetail',
-        component: () => import('@/views/workflow/ticketDetail'),
-        meta: { title: '工单详情', icon: 'example',noCache: true,},
-        hidden: true
-      },
+        path: 'index',
+        name: 'index',
+        component: () => import('@/views/resultView/index'),
+        meta: { title: '查看结果', icon: 'example', perms: ['workflow_index'] }
+      }
+
     ]
   },
   {
@@ -139,57 +211,6 @@ export const asyncRoutes = [
         name: 'User',
         component: () => import('@/views/system/user.vue'),
         meta: { title: '用户管理', icon: 'user', perms: ['user_manage'] }
-      },
-      {
-        path: 'organization',
-        name: 'Organization',
-        component: () => import('@/views/system/organization'),
-        meta: { title: '部门管理', icon: 'tree', perms: ['org_manage'] }
-      },
-      {
-        path: 'role',
-        name: 'Role',
-        component: () => import('@/views/system/role'),
-        meta: { title: '角色管理', icon: 'lock', perms: ['role_manage'] }
-      },
-      {
-        path: 'position',
-        name: 'Postion',
-        component: () => import('@/views/system/position'),
-        meta: { title: '岗位管理', icon: 'position', perms: ['position_manage'] }
-      },
-      {
-        path: 'dict',
-        name: 'Dict',
-        component: () => import('@/views/system/dict'),
-        meta: { title: '数据字典', icon: 'example', perms: ['dict_manage'] }
-      },
-      {
-        path: 'file',
-        name: 'File',
-        component: () => import('@/views/system/file'),
-        meta: { title: '文件库', icon: 'documentation', perms: ['file_room'] }
-      },
-      {
-        path: 'task',
-        name: 'Task',
-        component: () => import('@/views/system/task'),
-        meta: { title: '定时任务', icon: 'list', perms: ['ptask_manage'] }
-      }
-    ]
-  },
-  {
-    path: '/monitor',
-    component: Layout,
-    redirect: '/monitor/service',
-    name: 'Monitor',
-    meta: { title: '系统监控', icon: 'example', perms: ['monitor_set'] },
-    children: [
-      {
-        path: 'service',
-        name: 'service',
-        component: () => import('@/views/monitor/service'),
-        meta: { title: '服务监控', icon: 'example', perms: ['service_manage'] }
       }
     ]
   },
@@ -233,16 +254,6 @@ export const asyncRoutes = [
           {
             path: process.env.VUE_APP_BASE_API + '/swagger/',
             meta: { title: 'Swagger文档', icon: 'link', perms: ['dev_docs'] }
-          }
-        ]
-      },
-      {
-        path: 'admin-link',
-        component: Layout,
-        children: [
-          {
-            path: process.env.VUE_APP_BASE_API + '/admin/',
-            meta: { title: 'Django后台', icon: 'link', perms: ['dev_admin'] }
           }
         ]
       }
