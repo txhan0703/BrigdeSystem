@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '管理系统',
+  title: '桥梁计算系统',
 
   /**
    * @type {boolean} true | false
