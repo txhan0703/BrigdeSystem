@@ -24,6 +24,10 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
+  devServer: {
+    port: '9528', // 端口
+    disableHostCheck: true
+ },
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',

@@ -4,26 +4,26 @@
         <el-button type="primary" size="medium">保存当页已填参数</el-button>
       </div>
     <div class="left-form">
-      <el-form ref="form" :model="form" label-width="180px">
-        <el-form-item label="HeightTop = ">
+      <el-form ref="form" :model="form" label-width="200px">
+        <el-form-item label="塔顶高度 = ">
           <el-input v-model="form.HeightTop"></el-input>
         </el-form-item>
-        <el-form-item label="HeightMid = ">
+        <el-form-item label="中塔柱顶高度 = ">
           <el-input v-model="form.HeightMid"></el-input>
         </el-form-item>
-        <el-form-item label="HeightBot = ">
+        <el-form-item label="横梁高度 = ">
           <el-input v-model="form.HeightBot"></el-input>
         </el-form-item>
-        <el-form-item label="DistanceYMid = ">
+        <el-form-item label="中塔柱顶纵桥向间距 = ">
           <el-input v-model="form.DistanceYMid"></el-input>
         </el-form-item>
-        <el-form-item label="DistanceYBot = ">
+        <el-form-item label="下塔柱顶纵桥向长度 = ">
           <el-input v-model="form.DistanceYBot"></el-input>
         </el-form-item>
-        <el-form-item label="DistanceZMid = ">
+        <el-form-item label="中塔柱顶横桥向间距 = ">
           <el-input v-model="form.DistanceZMid"></el-input>
         </el-form-item>
-        <el-form-item label="DistanceZBot = ">
+        <el-form-item label="下塔柱顶横桥向长度 = ">
           <el-input v-model="form.DistanceZBot"></el-input>
         </el-form-item>
       </el-form>
@@ -87,13 +87,13 @@ export default {
     margin: 30px;
   }
   &-text {
-    font-size: 30px;
+    font-size: 24px;
     line-height: 46px;
   }
 }
 .left-form{
   position: absolute;
-  left: 10%;
+  left: 8%;
   bottom: 0;
   height: 100%;
   top: 5%;
@@ -105,7 +105,7 @@ export default {
   }
   .el-form-item__label{
       color:black;
-      font-size: 20px;
+      font-size: 18px;
     }
 }
 .block{

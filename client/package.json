@@ -5,7 +5,7 @@
   "author": "Pan <panfree23@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "vue-cli-service serve --host 0.0.0.0",
+    "dev": "vue-cli-service serve",
     "dev:docker": "NODE_ENV=development PORT=80 ./node_modules/.bin/vue-cli-service serve",
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",

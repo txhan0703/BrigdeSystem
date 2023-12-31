@@ -1,22 +1,23 @@
 <template>
     <div class="baseParam-container">
       
-      <div class="top-form">
+      <div class="leftop-form">
         <div style="position:absolute">
         <el-button type="primary" size="medium">保存当页已填参数</el-button>
       </div>
-        <el-form ref="form" :model="ruleForm.form1" label-width="200px" style="padding-left: 100px;">
-          <el-form-item label="L1 = ">
+        <el-form ref="form" :model="ruleForm.form1" label-width="250px" style="padding-left: 0px;padding-top: 20px;">
+          <el-form-item label="过渡墩到辅助墩距离L1 = ">
             <el-input v-model="ruleForm.form1.L1"></el-input>
           </el-form-item>
-          <el-form-item label="L2 = ">
+          <el-form-item label="辅助墩到桥塔支座距离L2 = ">
             <el-input v-model="ruleForm.form1.L2"></el-input>
           </el-form-item>
-          <el-form-item label="L3 = ">
+          <el-form-item label="桥塔支座到跨中距离L3 = ">
             <el-input v-model="ruleForm.form1.L3"></el-input>
           </el-form-item>
         </el-form>
       </div>   
+      
       <div class="block_mainline">
       <el-image :src="src" :fit="'fill'">
         <div slot="placeholder" class="image-slot">
@@ -52,8 +53,9 @@
       </el-form>
       </div>
       <div class="right_part">
+        <div style="padding-left:30px">
       <span class="bottom_span_2">其他纵向约束</span>
-      <el-form ref="ruleForm.form3" :model="ruleForm.form3" label-width="120px" style="padding-top:10px">
+      <el-form ref="ruleForm.form3" :model="ruleForm.form3" label-width="120px" style="padding-top:10px;padding-left:-20px">
         <el-form-item>
           <el-radio v-model="ruleForm.form3.yes" :label="true">是</el-radio>
           <div v-if="ruleForm.form3.yes===true" style="display: inline-block;">
@@ -63,6 +65,7 @@
           <el-radio class="el-radio_2" v-model="ruleForm.form3.yes" :label="false">否</el-radio>
         </el-form-item>
       </el-form>
+      </div>
       </div>
     </div>
     </div>
@@ -131,40 +134,40 @@
       line-height: 46px;
     }
   }
-  .top-form{
-    position: fixed;
-    margin-top: 0;
-    width: 100%;
-    height: 20%;
-    .el-input{
-      width: 120px;
-    }
-    .el-form-item{
-      margin-top: 0px;
-      display: inline-block;
-    }
-    .el-form-item__label{
-        color:black;
-        font-size: 20px;
-      }
+  .leftop-form{
+  position: absolute;
+  left: 3%;
+  bottom: 0;
+  height: 100%;
+  top: 5%;
+  .el-input{
+    width: 120px;
   }
+  .el-form-item{
+    margin-top: 40px;
+  }
+  .el-form-item__label{
+      color:black;
+      font-size: 18px;
+    }
+}
   .block_mainline{
-    position: absolute;
-    top: 10%;
-    left: 20%;
-    width: 62%;
-    height: 40%;
-  }
+  position: absolute;
+  left: 40%;
+  width: 760px;
+  height: 100%;
+  top: 3%;
+}
   .block_mainline_bottom{
     position: absolute;
     bottom:0;
     margin-bottom: 0;
     overflow-y: scroll;
-    margin-left: 100px;
+    margin-left: 5%;
     height:260px;
-    width:80%;
+    width:90%;
     .left_part{
-      width:40%;
+      width:50%;
       float: left;
       .bottom_span{
       padding-top: 30px;
@@ -186,9 +189,8 @@
       }
     }
     .right_part{
-      margin-right:20%;
       width:40%;
-      float: right;
+      float: left;
       .bottom_span_2{
       padding-top: 30px;
       color:black;

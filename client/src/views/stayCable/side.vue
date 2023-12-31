@@ -1,7 +1,11 @@
 <template>
     <div class="baseParam-container">
       <div style="position:absolute">
-          <el-button type="primary" size="medium">保存当页已填参数</el-button>
+          <div>
+            <el-button type="primary" size="medium">保存当页已填参数</el-button>
+            <el-button type="primary" size="medium" @click="refresh">重置</el-button>
+          </div>
+
         </div>
       <div class="left-form">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
@@ -73,7 +77,13 @@
         </div>
       </el-image>
     </div>
+    <div style="position: absolute;bottom:5%;right:5%;width: 30%;">
+      <span style="font-size: 14px;color:gray">
+            注：<br/>在表格第一行第一列右键粘贴，可以粘贴已复制的excel表格；点击重置会清空表格，可以重新复制
+    </span>
     </div>
+    </div>
+    
   </template>
   
   <script>
@@ -171,6 +181,40 @@
       row.index = rowIndex;
       column.index = columnIndex;
     },
+    refresh(){
+      this.ruleForm.tableData = [
+          {
+            h: '',
+            n: '',
+            s: '',
+            lpoint: '',
+            tpoint: '',
+            edit: true
+          }, {
+            h: '',
+            n: '',
+            s: '',
+            lpoint: '',
+            tpoint: '',
+            edit: true
+          }, {
+            h: '',
+            n: '',
+            s: '',
+            lpoint: '',
+            tpoint: '',
+            edit: true
+          }, {
+            h: '',
+            n: '',
+            s: '',
+            lpoint: '',
+            tpoint: '',
+            edit: true
+          }
+          ];
+
+    },
         /** 复制粘贴 */
     pasteInfo(e) {
       try {
@@ -202,6 +246,7 @@
 
         let emptyObj = { //需要复制粘贴的key值列
             h: '',
+            n: '',
             s: '',
             tdir: '',
             mdir: '',
@@ -263,7 +308,7 @@
     left: 2%;
     bottom: 3%;
     height: 100%;
-    top: 12%;
+    top: 15%;
     overflow-y:auto;
     .el-input{
       width: 120px;
