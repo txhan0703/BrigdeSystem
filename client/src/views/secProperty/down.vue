@@ -66,7 +66,7 @@
         </div>
       </el-image>
     </div>
-    <div style="position: absolute;bottom:3%;right:5%;width: 30%;">
+    <div style="position: absolute;bottom:2%;right:5%;width: 30%;">
       <span style="font-size: 14px;color:gray">
             注：<br/>在表格第一行第一列右键粘贴，可以粘贴已复制的excel表格；点击重置会清空表格，可以重新复制
     </span>
