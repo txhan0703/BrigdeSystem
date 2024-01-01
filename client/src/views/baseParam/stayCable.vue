@@ -73,7 +73,7 @@
         }, 500);
       };
         return {
-          src: require('../../../images/3.jpg'),
+          src: require('../../../images/3.png'),
           form1:{
             biankua: 10,
           },

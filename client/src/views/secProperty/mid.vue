@@ -118,7 +118,7 @@
         return {
           rowIndex: 0,
           columnIndex: 0,
-          src: require('../../../images/7下塔柱.png'),
+          src: require('../../../images/6中塔柱.png'),
           rules: {
             e: [
               { validator: validatePass, trigger: 'blur' }

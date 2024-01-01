@@ -6,25 +6,25 @@
     <div class="left-form">
       <el-form ref="form" :model="form" label-width="200px">
         <el-form-item label="塔顶高度 = ">
-          <el-input v-model="form.HeightTop"></el-input>
+          <el-input v-model="form.HeightTop"><template #suffix>m</template></el-input>
         </el-form-item>
         <el-form-item label="中塔柱顶高度 = ">
-          <el-input v-model="form.HeightMid"></el-input>
+          <el-input v-model="form.HeightMid"><template #suffix>m</template></el-input>
         </el-form-item>
         <el-form-item label="横梁高度 = ">
-          <el-input v-model="form.HeightBot"></el-input>
+          <el-input v-model="form.HeightBot"><template #suffix>m</template></el-input>
         </el-form-item>
         <el-form-item label="中塔柱顶纵桥向间距 = ">
-          <el-input v-model="form.DistanceYMid"></el-input>
+          <el-input v-model="form.DistanceYMid"><template #suffix>m</template></el-input>
         </el-form-item>
         <el-form-item label="下塔柱顶纵桥向长度 = ">
-          <el-input v-model="form.DistanceYBot"></el-input>
+          <el-input v-model="form.DistanceYBot"><template #suffix>m</template></el-input>
         </el-form-item>
         <el-form-item label="中塔柱顶横桥向间距 = ">
-          <el-input v-model="form.DistanceZMid"></el-input>
+          <el-input v-model="form.DistanceZMid"><template #suffix>m</template></el-input>
         </el-form-item>
         <el-form-item label="下塔柱顶横桥向长度 = ">
-          <el-input v-model="form.DistanceZBot"></el-input>
+          <el-input v-model="form.DistanceZBot"><template #suffix>m</template></el-input>
         </el-form-item>
       </el-form>
     </div>   
@@ -66,7 +66,7 @@ export default {
     },
   data() {
       return {
-        src: require('../../../images/1.jpg'),
+        src: require('../../../images/1.png'),
         form: {
           HeightTop:"",
           HeightMid:"",

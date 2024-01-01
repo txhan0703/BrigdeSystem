@@ -5,7 +5,7 @@
         </div>
       <div class="left-form-tab">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
-        <el-form-item label="求解模态： ">
+        <el-form-item label="1.求解模态： ">
           <el-checkbox-group v-model="ruleForm.mode">
           <el-checkbox label="L1">纵向正对称屈曲模态</el-checkbox>
           <el-checkbox label="L2">纵向反对称屈曲模态</el-checkbox>
@@ -14,12 +14,12 @@
           </el-checkbox-group>
         </el-form-item>
 
-        <el-form-item :rules="rules.e" prop="rank" style="margin-top:5%;" label="模态阶数 ">
+        <el-form-item :rules="rules.e" prop="rank" style="margin-top:5%;" label="2.模态阶数 ">
             <el-input v-model="ruleForm.rank"></el-input>
           </el-form-item>
 
           <div style="margin-top:5%;">
-            <span style="color:black;font-size: 20px;font-weight:bold;">屈曲系数范围</span>
+            <span style="color:black;font-size: 20px;font-weight:bold;">3.屈曲系数范围</span>
             <el-row>
             <el-col :span="4">
           <el-form-item :rules="rules.e" prop="range.min">
@@ -39,7 +39,7 @@
         </div>
 
           <div style="margin-top:5%;">
-          <span style="color:black;font-size: 20px;font-weight:bold;">多项式次数</span>
+          <span style="color:black;font-size: 20px;font-weight:bold;">4.屈曲模态函数多项式次数</span>
           <el-form-item :rules="rules.e" prop="multi.mainline">
             <span style="color:black;font-size: 16px;">主梁 &nbsp;&nbsp;&nbsp;</span>   <el-input v-model="ruleForm.multi.mainline"></el-input>
           </el-form-item>
@@ -104,7 +104,7 @@
         return {
           rowIndex: 0,
           columnIndex: 0,
-          src: require('../../../images/6中塔柱.jpg'),
+          src: require('../../../images/6中塔柱.png'),
           rules: {
             e: [
               { validator: validatePass, trigger: 'blur' }

@@ -130,7 +130,7 @@
         return {
           rowIndex: 0,
           columnIndex: 0,
-          src: require('../../../images/9-1.png'),
+          src: require('../../../images/9-2.png'),
           rules: {
             e: [
               { validator: validatePass, trigger: 'blur' }

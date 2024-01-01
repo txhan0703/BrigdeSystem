@@ -134,10 +134,16 @@ export const asyncRoutes = [
         meta: { title: '上塔柱', icon: 'example', perms: ['workflow_index'] }
       },
       {
+        path: 'mid',
+        name: 'mid',
+        component: () => import('@/views/secProperty/mid'),
+        meta: { title: '中塔柱', icon: 'example', perms: ['workflow_index'] }
+      },
+      {
         path: 'down',
         name: 'down',
         component: () => import('@/views/secProperty/down'),
-        meta: { title: '中塔柱', icon: 'example', perms: ['workflow_index'] }
+        meta: { title: '下塔柱', icon: 'example', perms: ['workflow_index'] }
       },
       {
         path: 'mainLine',

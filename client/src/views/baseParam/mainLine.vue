@@ -5,15 +5,20 @@
         <div style="position:absolute">
         <el-button type="primary" size="medium">保存当页已填参数</el-button>
       </div>
-        <el-form ref="form" :model="ruleForm.form1" label-width="250px" style="padding-left: 0px;padding-top: 20px;">
+
+      <div style="position:absolute;margin-top: 10%;margin-left:15%">        <span style="color:black;font-size: 23px;font-weight:bold;">1.主梁参数</span></div>
+        <el-form ref="form" :model="ruleForm.form1" label-width="250px" style="padding-left: 0px;padding-top: 10%;">
           <el-form-item label="过渡墩到辅助墩距离L1 = ">
-            <el-input v-model="ruleForm.form1.L1"></el-input>
+            <el-input v-model="ruleForm.form1.L1"><template #suffix>m</template></el-input>
           </el-form-item>
           <el-form-item label="辅助墩到桥塔支座距离L2 = ">
-            <el-input v-model="ruleForm.form1.L2"></el-input>
+            <el-input v-model="ruleForm.form1.L2"><template #suffix>m</template></el-input>
           </el-form-item>
           <el-form-item label="桥塔支座到跨中距离L3 = ">
-            <el-input v-model="ruleForm.form1.L3"></el-input>
+            <el-input v-model="ruleForm.form1.L3"><template #suffix>m</template></el-input>
+          </el-form-item>
+          <el-form-item label="主梁高度 = ">
+            <el-input v-model="ruleForm.form1.L3"><template #suffix>m</template></el-input>
           </el-form-item>
         </el-form>
       </div>   
@@ -27,7 +32,7 @@
         </div>
     <div class="block_mainline_bottom">
       <div class="left_part">
-      <span class="bottom_span">支座布置</span>
+      <span class="bottom_span">2.支座布置</span>
       <el-form ref="ruleForm.form2" :model="ruleForm.form2" label-width="120px" style="padding-top:10px">
         <el-form-item label="竖向 ： ">
           <el-checkbox-group v-model="ruleForm.form2.shuxiang">
@@ -54,13 +59,13 @@
       </div>
       <div class="right_part">
         <div style="padding-left:30px">
-      <span class="bottom_span_2">其他纵向约束</span>
+      <span class="bottom_span_2">3.其他纵向约束</span>
       <el-form ref="ruleForm.form3" :model="ruleForm.form3" label-width="120px" style="padding-top:10px;padding-left:-20px">
         <el-form-item>
           <el-radio v-model="ruleForm.form3.yes" :label="true">是</el-radio>
           <div v-if="ruleForm.form3.yes===true" style="display: inline-block;">
             <span style="font-size:18px;">刚度：</span>
-            <el-input v-model="ruleForm.form3.gangdu" style="width: 80px;display: inline-block;"></el-input>
+            <el-input v-model="ruleForm.form3.gangdu" style="width: 80px;display: inline-block;"><template #suffix>N/m</template></el-input>
           </div>
           <el-radio class="el-radio_2" v-model="ruleForm.form3.yes" :label="false">否</el-radio>
         </el-form-item>
@@ -99,7 +104,7 @@
     },
     data() {
         return {
-          src: require('../../../images/2.jpg'),
+          src: require('../../../images/2.png'),
           ruleForm:{
             form1: {
             L1:"",
@@ -172,7 +177,8 @@
       .bottom_span{
       padding-top: 30px;
       color:black;
-      font-size: 30px;
+      font-size: 23px;
+      font-weight:bold;
     }
 
 
@@ -194,7 +200,8 @@
       .bottom_span_2{
       padding-top: 30px;
       color:black;
-      font-size: 30px;
+      font-size: 23px;
+      font-weight:bold;
     }
     .el-form-item__label{
         color:black;

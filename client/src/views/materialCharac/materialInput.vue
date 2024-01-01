@@ -19,7 +19,7 @@
     </el-table-column>
     <el-table-column
       prop="e"
-      label="E"
+      label="弹性模量/Pa"
       width="180">
       <template slot-scope="scope">
         <el-form-item :rules="rules.e" :prop="'tableData['+scope.$index+'].e'">
@@ -29,7 +29,7 @@
     </el-table-column>
     <el-table-column
       prop="p"
-      label="P"
+      label="密度/(kg·m-3)"
       width="180">
       <template slot-scope="scope">
        <el-form-item :rules="rules.p" :prop="'tableData['+scope.$index+'].p'">
@@ -93,7 +93,7 @@ export default {
         }, 1000);
       };
       return {
-        src: require('../../../images/4.jpg'),
+        src: require('../../../images/4.png'),
         rules: {
           e: [
             { validator: validatePass, trigger: 'blur' }
