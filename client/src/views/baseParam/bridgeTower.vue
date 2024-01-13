@@ -4,27 +4,45 @@
         <el-button type="primary" size="medium">保存当页已填参数</el-button>
       </div>
     <div class="left-form">
-      <el-form ref="form" :model="form" label-width="200px">
-        <el-form-item label="塔顶高度 = ">
+      <el-form ref="form" :model="form" label-width="220px">
+        <el-form-item label="纵桥向桥塔型式 ">
+          <template>
+            <el-radio v-model="form.Width" label="1">钻石型</el-radio>
+            <el-radio v-model="form.Width" label="2">独柱型</el-radio>
+          </template>
+        </el-form-item>
+        <el-form-item label="横桥向桥塔型式 ">
+          <template>
+            <el-radio v-model="form.Length" label="1">钻石型</el-radio>
+            <el-radio v-model="form.Length" label="2">独柱型</el-radio>
+          </template>
+        </el-form-item>
+        <el-form-item label="①塔顶高度 = ">
           <el-input v-model="form.HeightTop"><template #suffix>m</template></el-input>
         </el-form-item>
-        <el-form-item label="中塔柱顶高度 = ">
+        <el-form-item label="②中塔柱顶高度 = ">
           <el-input v-model="form.HeightMid"><template #suffix>m</template></el-input>
         </el-form-item>
-        <el-form-item label="横梁高度 = ">
+        <el-form-item label="③横梁高度 = ">
           <el-input v-model="form.HeightBot"><template #suffix>m</template></el-input>
         </el-form-item>
-        <el-form-item label="中塔柱顶纵桥向间距 = ">
-          <el-input v-model="form.DistanceYMid"><template #suffix>m</template></el-input>
+        <el-form-item label="④中塔柱顶纵桥向间距 = ">
+          <el-input v-model="form.DistanceYMid" :disabled="form.Width=='2'"><template #suffix>m</template></el-input>
         </el-form-item>
-        <el-form-item label="下塔柱顶纵桥向长度 = ">
-          <el-input v-model="form.DistanceYBot"><template #suffix>m</template></el-input>
+        <el-form-item label="⑤下塔柱顶纵桥向长度 = ">
+          <el-input v-model="form.DistanceYBot" :disabled="form.Width=='2'"><template #suffix>m</template></el-input>
         </el-form-item>
-        <el-form-item label="中塔柱顶横桥向间距 = ">
-          <el-input v-model="form.DistanceZMid"><template #suffix>m</template></el-input>
+        <el-form-item label="⑥下塔柱底纵桥向长度 = ">
+          <el-input v-model="form.DistanceZMid" :disabled="form.Width=='2'"><template #suffix>m</template></el-input>
         </el-form-item>
-        <el-form-item label="下塔柱顶横桥向长度 = ">
-          <el-input v-model="form.DistanceZBot"><template #suffix>m</template></el-input>
+        <el-form-item label="⑦中塔柱顶横桥向间距 = ">
+          <el-input v-model="form.DistanceZBot" :disabled="form.Length=='2'"><template #suffix>m</template></el-input>
+        </el-form-item>
+        <el-form-item label="⑧下塔柱顶横桥向长度 = ">
+          <el-input v-model="form.DistanceZMid" :disabled="form.Length=='2'"><template #suffix>m</template></el-input>
+        </el-form-item>
+        <el-form-item label="⑨下塔柱底横桥向长度 = ">
+          <el-input v-model="form.DistanceZBot" :disabled="form.Length=='2'"><template #suffix>m</template></el-input>
         </el-form-item>
       </el-form>
     </div>   
@@ -68,6 +86,8 @@ export default {
       return {
         src: require('../../../images/1.png'),
         form: {
+          Width: "1",
+          Length: "1",
           HeightTop:"",
           HeightMid:"",
           HeightBot:"",
@@ -101,7 +121,7 @@ export default {
     width: 120px;
   }
   .el-form-item{
-    margin-top: 40px;
+    margin-top: 25px;
   }
   .el-form-item__label{
       color:black;

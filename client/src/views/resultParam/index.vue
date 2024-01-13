@@ -49,6 +49,9 @@
           <el-form-item :rules="rules.e" prop="multi.down">
             <span style="color:black;font-size: 16px;">中塔柱 &nbsp;&nbsp;&nbsp;</span>    <el-input v-model="ruleForm.multi.down"></el-input>
           </el-form-item>
+          <el-form-item :rules="rules.e" prop="multi.down">
+            <span style="color:black;font-size: 16px;">下塔柱 &nbsp;&nbsp;&nbsp;</span>    <el-input v-model="ruleForm.multi.down"></el-input>
+          </el-form-item>
         </div>
       </el-form>
       </div>   

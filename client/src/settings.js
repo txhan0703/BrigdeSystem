@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '桥梁计算系统',
+  title: '钻石型桥塔斜拉桥屈曲分析系统',
 
   /**
    * @type {boolean} true | false

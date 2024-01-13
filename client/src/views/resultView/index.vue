@@ -1,20 +1,26 @@
 <template>
     <div class="baseParam-container">
       <div style="position:absolute">
-          <el-button type="primary" size="medium">保存当页已填参数</el-button>
-        </div>
-      <div class="left-form-tab">
+       <div style="padding-left: 4%;" v-if="isCalculating"><i class="el-icon-loading"></i><span style="font-size: 15px;color:gray">计算模块正在计算中，启动时间：2024-01-13 17:57:36</span></div> 
+      <div style="padding-left: 4%;margin-top:10px;width:150%;">
+        <span style="font-size: 15px;color:gray;">页面展示结果计算时间：2024-01-13 08:57:36</span>
+        <el-button>查看当前结果对应参数</el-button>
+      </div>
+      </div>
+
+      <div style="position:absolute; float:right; right: 100px;">
+          <el-button type="primary" size="medium" @click="viewHistory()">查看历史计算结果</el-button>
+      </div>
+      <div class="left-form-tab-result">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
         <el-table
         :data="ruleForm.tableData"
         :border="true"
         :cell-class-name="getCellIndex"
-        @paste.native="pasteInfo($event)"
-      @cell-click="cellClick"
         style="width: 100%">
       <el-table-column
         prop="h"
-        label="高度/m"
+        label="阶数"
         width="150">
         <template slot-scope="scope">
           <el-form-item :rules="rules.e" :prop="'tableData['+scope.$index+'].h'">
@@ -24,7 +30,7 @@
       </el-table-column>
       <el-table-column
         prop="s"
-        label="截面面积/m^2"
+        label="屈曲荷载系数"
         width="150">
         <template slot-scope="scope">
           <el-form-item :rules="rules.e" :prop="'tableData['+scope.$index+'].s'">
@@ -34,7 +40,7 @@
       </el-table-column>
       <el-table-column
         prop="tdir"
-        label="纵桥向惯性矩/m^4"
+        label="方向"
         width="150">
         <template slot-scope="scope">
           <el-form-item :rules="rules.e" :prop="'tableData['+scope.$index+'].tdir'">
@@ -44,7 +50,7 @@
       </el-table-column>
       <el-table-column
         prop="mdir"
-        label="横桥向惯性矩/m^4"
+        label="对称性"
         width="150">
         <template slot-scope="scope">
           <el-form-item :rules="rules.e" :prop="'tableData['+scope.$index+'].mdir'">
@@ -52,11 +58,18 @@
           </el-form-item>
         </template>
       </el-table-column>
-  
+      <el-table-column
+        prop="re"
+        label="结果"
+        width="150">
+        <template slot-scope="scope">
+          <el-button @click="viewResult(scope.row)">查看结果</el-button>
+        </template>
+      </el-table-column>
        </el-table>
       </el-form>
       </div>   
-      <div class="block_down">
+      <div class="block_down_result">
       <el-image :src="src" :fit="'cover'">
         <div slot="placeholder" class="image-slot">
           加载中<span class="dot">...</span>
@@ -108,9 +121,10 @@
           }, 1000);
         };
         return {
+          isCalculating: true,
           rowIndex: 0,
           columnIndex: 0,
-          src: require('../../../images/6中塔柱.png'),
+          src: require('../../../images/11全桥图片.png'),
           rules: {
             e: [
               { validator: validatePass, trigger: 'blur' }
@@ -148,88 +162,12 @@
         }
       },
       methods:{
-        cellClick(row, column, cell, event) {
-      // console.log(row, column, cell, event);
-      this.rowIndex = row.index
-      this.columnIndex = column.index
-    },
-    getCellIndex: function ({ row, column, rowIndex, columnIndex }) {
-      row.index = rowIndex;
-      column.index = columnIndex;
-    },
-        /** 复制粘贴 */
-    pasteInfo(e) {
-      try {
-        e.preventDefault(); //阻止默认粘贴事件
-        e.stopPropagation(); //阻止事件冒泡
+        viewResult(row){
 
-        var data = null;
-        var clipboardData = e.clipboardData || window.clipboardData; // IE
-        if (!clipboardData) {
-          //chrome
-          clipboardData = e.originalEvent.clipboardData;
+        },
+        viewHistory(){
+          this.isCalculating = !this.isCalculating;
         }
-      
-        data = clipboardData.getData("Text"); //复制过来的内容
-        //首先对源头进行解析
-        var rowStrArray = data.split("\r\n"); //拆成多行
-        let rows = [];
-        for (var i = 0; i < rowStrArray.length-1; i++) {
-          var row = [];
-          var tdStrArray = rowStrArray[i].split("\t"); //按列拆分
-          for (var j = 0; j < tdStrArray.length; j++) {
-            row.push(tdStrArray[j]);
-          }
-          rows.push(row);
-        }
-        if(this.rowIndex!=0||this.columnIndex!=0){
-          this.$message.error('只支持从首行首列粘贴');
-          return ;
-        }
-
-        let emptyObj = { //需要复制粘贴的key值列
-            h: '',
-            s: '',
-            tdir: '',
-            mdir: '',
-            edit: true
-        }
-        if(rows.length>4){
-          for(var i=4; i<rows.length; i++){
-            this.ruleForm.tableData.push(emptyObj);
-          }
-        }
-
-        for (var j = 0; j < rows.length; j++) {
-          if(this.rowIndex+j > this.ruleForm.tableData.length - 1){
-            break
-          }
-          let item = {}
-          console.log(this.rowIndex+j)
-          item = JSON.parse(JSON.stringify(this.ruleForm.tableData[this.rowIndex+j]))
-          let num = 0
-          let numFlag = 0 //从哪一列开始粘贴：全部列都可以粘贴(即从第0列可以粘贴)
-          for (var key in emptyObj) {
-            if (!rows[j][num]) {
-              break
-            }
-            // console.log('numFlag--', numFlag, 'this.columnIndex--', this.columnIndex, 'num-', num);
-            if (this.columnIndex <= numFlag) {
-              // 针对不能修改的列字段做处理，可以复制粘贴的列才做赋值。根据需求加下面的if判断
-              if (key !== 'jg' && key !== 'gz' && key !== 'xz') {
-                item[key] = rows[j][num]
-              }
-              num = num + 1
-            }
-            numFlag = numFlag + 1
-          }
-          this.$set(this.ruleForm.tableData, this.rowIndex+j, item)
-        }
-      } catch(err) {
-        console.log(err);
-        this.$message.error('请选择粘贴位置')
-      }
-    },
     
       }  
   }
@@ -245,11 +183,11 @@
       line-height: 46px;
     }
   }
-  .left-form-tab{
+  .left-form-tab-result{
     position: absolute;
     left: 4%;
     height: 100%;
-    top: 12%;
+    top: 15%;
     overflow-y:auto;
 
     .el-input{
@@ -263,13 +201,13 @@
         font-size: 20px;
       }
   }
-  .block_down{
+  .block_down_result{
     position: absolute;
     left: 60%;
     bottom: 0;
     width: 30%;
 
-    top: 5%;
+    top: 15%;
   }
   </style>
   

@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">桥梁计算系统登陆</h3>
+        <h3 class="title">钻石型桥塔斜拉桥屈曲分析系统登陆</h3>
       </div>
 
       <el-form-item prop="username">
@@ -129,7 +129,7 @@ export default {
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
-$bg:#283443;
+$bg:#7c98b9;
 $light_gray:#fff;
 $cursor: #fff;
 
@@ -141,6 +141,10 @@ $cursor: #fff;
 
 /* reset element-ui css */
 .login-container {
+  background-image: url('../../../images/background.jpg'); 
+  background-size: cover; /* 控制背景图铺满整个容器 */
+  background-position: center; /* 居中显示背景图 */
+  height: 100vh; /* 高度设置为视口高度，保持全屏展示 */
   .el-input {
     display: inline-block;
     height: 47px;
@@ -152,7 +156,6 @@ $cursor: #fff;
       -webkit-appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
-      color: $light_gray;
       height: 47px;
       caret-color: $cursor;
 
@@ -217,7 +220,7 @@ $light_gray:#eee;
 
     .title {
       font-size: 26px;
-      color: $light_gray;
+      color: $bg;
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
