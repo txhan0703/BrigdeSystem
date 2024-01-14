@@ -18,7 +18,10 @@
             <el-input v-model="ruleForm.form1.L3"><template #suffix>m</template></el-input>
           </el-form-item>
           <el-form-item label="主梁高度 = ">
-            <el-input v-model="ruleForm.form1.L3"><template #suffix>m</template></el-input>
+            <el-input v-model="ruleForm.form1.height"><template #suffix>m</template></el-input>
+          </el-form-item>
+          <el-form-item label="桥塔支座偏心距离 = ">
+            <el-input v-model="ruleForm.form1.offset"><template #suffix>m</template></el-input>
           </el-form-item>
         </el-form>
       </div>   
@@ -110,6 +113,8 @@
             L1:"",
             L2:"",
             L3:"",
+            height: 1,
+            offset: 1,
           },
           form2:{
             shuxiang:
@@ -149,7 +154,7 @@
     width: 120px;
   }
   .el-form-item{
-    margin-top: 40px;
+    margin-top: 30px;
   }
   .el-form-item__label{
       color:black;
