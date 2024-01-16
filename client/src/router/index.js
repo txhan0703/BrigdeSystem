@@ -116,7 +116,7 @@ export const asyncRoutes = [
         path: 'materialInput',
         name: 'materialInput',
         component: () => import('@/views/materialCharac/materialInput'),
-        meta: { title: '材料特性输入', icon: 'example', perms: ['workflow_index'] }
+        meta: { title: '材料特性', icon: 'example', perms: ['workflow_index'] }
       },
     ]
   },

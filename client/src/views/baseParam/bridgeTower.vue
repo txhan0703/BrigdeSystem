@@ -29,19 +29,19 @@
         <el-form-item label="④中塔柱顶纵桥向间距 = ">
           <el-input v-model="form.DistanceYMid" :disabled="form.Width=='2'"><template #suffix>m</template></el-input>
         </el-form-item>
-        <el-form-item label="⑤下塔柱顶纵桥向长度 = ">
+        <el-form-item label="⑤下塔柱顶纵桥向间距 = ">
           <el-input v-model="form.DistanceYBot" :disabled="form.Width=='2'"><template #suffix>m</template></el-input>
         </el-form-item>
-        <el-form-item label="⑥下塔柱底纵桥向长度 = ">
+        <el-form-item label="⑥下塔柱底纵桥向间距 = ">
           <el-input v-model="form.DistanceZMid" :disabled="form.Width=='2'"><template #suffix>m</template></el-input>
         </el-form-item>
         <el-form-item label="⑦中塔柱顶横桥向间距 = ">
           <el-input v-model="form.DistanceZBot" :disabled="form.Length=='2'"><template #suffix>m</template></el-input>
         </el-form-item>
-        <el-form-item label="⑧下塔柱顶横桥向长度 = ">
+        <el-form-item label="⑧下塔柱顶横桥向间距 = ">
           <el-input v-model="form.DistanceZMid" :disabled="form.Length=='2'"><template #suffix>m</template></el-input>
         </el-form-item>
-        <el-form-item label="⑨下塔柱底横桥向长度 = ">
+        <el-form-item label="⑨下塔柱底横桥向间距 = ">
           <el-input v-model="form.DistanceZBot" :disabled="form.Length=='2'"><template #suffix>m</template></el-input>
         </el-form-item>
       </el-form>

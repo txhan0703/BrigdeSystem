@@ -14,7 +14,7 @@
           <el-form-item label="辅助墩到桥塔支座距离L2 = ">
             <el-input v-model="ruleForm.form1.L2"><template #suffix>m</template></el-input>
           </el-form-item>
-          <el-form-item label="桥塔支座到跨中距离L3 = ">
+          <el-form-item label="桥塔到跨中距离L3 = ">
             <el-input v-model="ruleForm.form1.L3"><template #suffix>m</template></el-input>
           </el-form-item>
           <el-form-item label="主梁高度 = ">
