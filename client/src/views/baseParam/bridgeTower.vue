@@ -121,7 +121,7 @@ export default {
     width: 120px;
   }
   .el-form-item{
-    margin-top: 25px;
+    margin-top: 4.5%;
   }
   .el-form-item__label{
       color:black;
