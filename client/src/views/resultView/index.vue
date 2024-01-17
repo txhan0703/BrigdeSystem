@@ -1,14 +1,15 @@
 <template>
     <div class="baseParam-container">
-      <div style="position:absolute">
-       <div style="padding-left: 4%;" v-if="isCalculating"><i class="el-icon-loading"></i><span style="font-size: 15px;color:gray">计算模块正在计算中，启动时间：2024-01-13 17:57:36</span></div> 
+            <div style="position:absolute">
+       <div style="padding-left: 4%;" v-if="isCalculating"><i class="el-icon-loading"></i><span style="font-size: 15px;color:gray">计算模块正在计算中，启动时间：2024-01-18 17:57:36</span></div> 
       <div style="padding-left: 4%;margin-top:10px;width:150%;">
-        <span style="font-size: 15px;color:gray;">页面展示结果计算时间：2024-01-13 08:57:36</span>
+        <span style="font-size: 15px;color:gray;">页面展示结果计算时间：2024-01-18 08:57:36</span>
         <el-button>查看当前结果对应参数</el-button>
       </div>
       </div>
 
       <div style="position:absolute; float:right; right: 100px;">
+        <el-button type="primary"  @click="calculate()">启动计算</el-button>
           <el-button type="primary" size="medium" @click="viewHistory()">查看历史计算结果</el-button>
       </div>
       <div class="left-form-tab-result">
@@ -16,16 +17,13 @@
         <el-table
         :data="ruleForm.tableData"
         :border="true"
-        :cell-class-name="getCellIndex"
         style="width: 100%">
       <el-table-column
         prop="h"
         label="阶数"
         width="150">
         <template slot-scope="scope">
-          <el-form-item :rules="rules.e" :prop="'tableData['+scope.$index+'].h'">
-            <el-input v-if="scope.row.edit" v-model="ruleForm.tableData[scope.$index].h" placeholder="请填写"></el-input>
-          </el-form-item>
+          {{ruleForm.tableData[scope.$index].h}}
         </template>
       </el-table-column>
       <el-table-column
@@ -33,9 +31,7 @@
         label="屈曲荷载系数"
         width="150">
         <template slot-scope="scope">
-          <el-form-item :rules="rules.e" :prop="'tableData['+scope.$index+'].s'">
-            <el-input v-if="scope.row.edit" v-model="ruleForm.tableData[scope.$index].s" placeholder="请填写"></el-input>
-          </el-form-item>
+          {{ruleForm.tableData[scope.$index].s}}
         </template>
       </el-table-column>
       <el-table-column
@@ -43,9 +39,7 @@
         label="方向"
         width="150">
         <template slot-scope="scope">
-          <el-form-item :rules="rules.e" :prop="'tableData['+scope.$index+'].tdir'">
-            <el-input v-if="scope.row.edit" v-model="ruleForm.tableData[scope.$index].tdir" placeholder="请填写"></el-input>
-          </el-form-item>
+          {{ruleForm.tableData[scope.$index].tdir}}
         </template>
       </el-table-column>
       <el-table-column
@@ -53,9 +47,7 @@
         label="对称性"
         width="150">
         <template slot-scope="scope">
-          <el-form-item :rules="rules.e" :prop="'tableData['+scope.$index+'].mdir'">
-            <el-input v-if="scope.row.edit" v-model="ruleForm.tableData[scope.$index].mdir" placeholder="请填写"></el-input>
-          </el-form-item>
+          {{ruleForm.tableData[scope.$index].mdir}}
         </template>
       </el-table-column>
       <el-table-column
@@ -63,7 +55,9 @@
         label="结果"
         width="150">
         <template slot-scope="scope">
-          <el-button @click="viewResult(scope.row)">查看结果</el-button>
+          <el-button @click="viewResult(scope.$index)">查看结果</el-button>
+   <!--trigger属性值：hover、click、focus 和 manual-->
+    <el-image v-show="resultShow[scope.$index]" slot="reference" :src="resultSrc+'/Girder'+scope.$index+'.png'" style="width: 100px;height: 100px; cursor:pointer" :fit="'cover'"> </el-image>
         </template>
       </el-table-column>
        </el-table>
@@ -125,6 +119,8 @@
           rowIndex: 0,
           columnIndex: 0,
           src: require('../../../images/11全桥图片.png'),
+          resultSrc: "../../../../../matlab",
+          resultShow: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
           rules: {
             e: [
               { validator: validatePass, trigger: 'blur' }
@@ -133,28 +129,124 @@
           ruleForm:{
             tableData:[
           {
-            h: '',
-            s: '',
-            tdir: '',
-            mdir: '',
+            h: 1,
+            s: 7.2594,
+            tdir: "纵桥向",
+            mdir: "反对称",
             edit: true
           }, {
-            h: '',
-            s: '',
-            tdir: '',
-            mdir: '',
+            h: 2,
+            s: 8.0258,
+            tdir: "纵桥向",
+            mdir: "正对称",
             edit: true
           }, {
-            h: '',
-            s: '',
-            tdir: '',
-            mdir: '',
+            h: 3,
+            s: 8.0296,
+            tdir: '横桥向',
+            mdir: '正对称',
             edit: true
           }, {
-            h: '',
-            s: '',
-            tdir: '',
-            mdir: '',
+            h: 4,
+            s: 8.0398,
+            tdir: '纵桥向',
+            mdir: '反对称',
+            edit: true
+          }, {
+            h: 5,
+            s: 8.4931,
+            tdir: '横桥向',
+            mdir: '反对称',
+            edit: true
+          }, {
+            h: 6,
+            s: 10.8157,
+            tdir: '横桥向',
+            mdir: '正对称',
+            edit: true
+          }, {
+            h: 7,
+            s: 17.4213,
+            tdir: '纵桥向',
+            mdir: '正对称',
+            edit: true
+          }, {
+            h: 8,
+            s: 18.348,
+            tdir: '横桥向',
+            mdir: '反对称',
+            edit: true
+          }, {
+            h: 9,
+            s: 20.5259,
+            tdir: '纵桥向',
+            mdir: '反对称',
+            edit: true
+          }, {
+            h: 10,
+            s: 25.027,
+            tdir: '横桥向',
+            mdir: '正对称',
+            edit: true
+          }, {
+            h: 11,
+            s: 31.0289,
+            tdir: '横桥向',
+            mdir: '反对称',
+            edit: true
+          }, {
+            h: 12,
+            s: 32.5321,
+            tdir: '纵桥向',
+            mdir: '正对称',
+            edit: true
+          }, {
+            h: 13,
+            s: 32.6089,
+            tdir: '纵桥向',
+            mdir: '反对称',
+            edit: true
+          }, {
+            h: 14,
+            s: 33.756,
+            tdir: '横桥向',
+            mdir: '反对称',
+            edit: true
+          }, {
+            h: 15,
+            s: 33.7576,
+            tdir: '横桥向',
+            mdir: '正对称',
+            edit: true
+          }, {
+            h: 16,
+            s: 48.7101,
+            tdir: '纵桥向',
+            mdir: '正对称',
+            edit: true
+          }, {
+            h: 17,
+            s: 50.2973,
+            tdir: '横桥向',
+            mdir: '正对称',
+            edit: true
+          }, {
+            h: 18,
+            s: 50.8561,
+            tdir: '纵桥向',
+            mdir: '反对称',
+            edit: true
+          }, {
+            h: 19,
+            s: 54.4485,
+            tdir: '横桥向',
+            mdir: '反对称',
+            edit: true
+          }, {
+            h: 20,
+            s: 54.6054,
+            tdir: '纵桥向',
+            mdir: '反对称',
             edit: true
           }
           ]
@@ -162,8 +254,8 @@
         }
       },
       methods:{
-        viewResult(row){
-
+        viewResult(index){
+          this.resultShow[index] = true;
         },
         viewHistory(){
           this.isCalculating = !this.isCalculating;
@@ -189,6 +281,7 @@
     height: 100%;
     top: 15%;
     overflow-y:auto;
+    padding-bottom: 10%;
 
     .el-input{
       width: 120px;
@@ -207,7 +300,7 @@
     bottom: 0;
     width: 30%;
 
-    top: 15%;
+    top: 20%;
   }
   </style>
   
